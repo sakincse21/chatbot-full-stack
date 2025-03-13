@@ -1,7 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import userRoutes from '@routes/user.routes';
+import userRouter from '@routes/user.routes';
+import authRouter from '@routes/auth.routes';
+import chatRouter from '@routes/chats.routes';
 
 dotenv.config();
 
@@ -17,6 +19,9 @@ app.get('/health', (_req, res) => {
 });
 
 // Routes
-app.use('/api/v1/users', userRoutes);
+
+app.use('/api/v1/user', userRouter);
+app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/chats', chatRouter);
 
 export default app;

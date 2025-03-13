@@ -1,8 +1,10 @@
 import mongoose from 'mongoose';
+import { MONGO_URI } from '@config/env';
 
 const connectDatabase = async (): Promise<void> => {
 	try {
-		const mongoUri = process.env.MONGO_URI;
+		console.log(MONGO_URI)
+		const mongoUri = MONGO_URI;
 
 		if (!mongoUri) {
 			throw new Error(
