@@ -3,7 +3,7 @@ import { MONGO_URI } from '@config/env';
 
 const connectDatabase = async (): Promise<void> => {
 	try {
-		console.log(MONGO_URI)
+
 		const mongoUri = MONGO_URI;
 
 		if (!mongoUri) {
