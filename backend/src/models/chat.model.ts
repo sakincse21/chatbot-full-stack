@@ -1,22 +1,33 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-export interface IMessage{
-  role: string;
-  content: string;
-}
+  export interface IMessage {
+    role: string;
+    content: {
+      type: string;
+      text: string;
+    } | string;
+  }
 
-export interface IChat extends Document {
-  userId: string;
-  messages: Array<IMessage>;
-}
+  type IMessageT = Array<IMessage>;
 
-const ChatSchema = new Schema<IChat>(
-  {
-    userId: { type: String, required: [true, 'userId is required'] },
-    messages: { type: [{ role: String, content: String }], required: true },
-  },
-);
+  export interface IChat extends Document {
+    userId: string;
+    messages: Array<IMessage>;
+  }
 
-const ChatModel= mongoose.model<IChat>('Chat', ChatSchema);
+  const ChatSchema = new Schema<IChat>(
+    {
+      userId: { type: String, required: [true, 'userId is required'] },
+      messages: {
+        type: [{
+          role: String,
+          content: Schema.Types.Mixed  // This allows both string and object content
+        }],
+        required: true
+      },
+    },
+  );
 
-export default ChatModel;
+  const ChatModel = mongoose.model<IChat>('Chat', ChatSchema);
+
+  export default ChatModel;

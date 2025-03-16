@@ -4,7 +4,7 @@ import authorize from '../middlewares/auth.middleware';
 
 const chatRouter= Router();
 
-chatRouter.post('/chat',authorize, chatFunc);
+chatRouter.post('/chatfunc',authorize, chatFunc);
 chatRouter.get('/getChatList/:id', authorize, getChatList);
 
 export default chatRouter;
